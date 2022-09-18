@@ -10,7 +10,7 @@
 	<title>Booking Form HTML Template</title>
 
 	<!-- Google font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"> -->
 
 	<!-- App -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -27,10 +27,10 @@
 				<div class="row">
 					<div class="col-md-7 col-md-push-5">
 						<div class="booking-cta">
-							<h1>Make your reservation</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
-								ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
-								Perspiciatis.
+							<h1>Make your reservation for {{ $time }}</h1>
+							<p>
+								This Gas Station Reservation System is desgined 
+								to organize and decrese the number traffic jams in a day
 							</p>
 						</div>
 					</div>
@@ -38,58 +38,16 @@
 						<div class="booking-form">
 							<form>
 								<div class="form-group">
-									<span class="form-label">Your Last Name:</span>
-									<input class="form-control" type="text" placeholder="Enter Your Last Name:">
+									<span class="form-label">Your Full Name:</span>
+									<input class="form-control" type="text" placeholder="Enter Your Full Name:">
 								</div>
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="form-group">
-											<span class="form-label">Check In</span>
-											<input class="form-control" type="date" required>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<span class="form-label">Check out</span>
-											<input class="form-control" type="date" required>
-										</div>
-									</div>
+								
+								<div class="form-group">
+									<span class="form-label">Time:</span>
+									{{-- selectBox --}}
+									
 								</div>
-								<div class="row">
-									<div class="col-sm-4">
-										<div class="form-group">
-											<span class="form-label">Rooms</span>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<span class="form-label">Adults</span>
-											<select class="form-control">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<span class="form-label">Children</span>
-											<select class="form-control">
-												<option>0</option>
-												<option>1</option>
-												<option>2</option>
-											</select>
-											<span class="select-arrow"></span>
-										</div>
-									</div>
-								</div>
+	
 								<div class="form-btn">
 									<button class="submit-btn">Check availability</button>
 								</div>
