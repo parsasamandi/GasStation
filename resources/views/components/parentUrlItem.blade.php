@@ -1,0 +1,1 @@
+<a class="nav-link" href="admin\list"><i class="{{ $fontAwesome }}"></i> &nbsp; {{ $name }}</a>

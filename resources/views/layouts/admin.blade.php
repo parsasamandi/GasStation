@@ -37,10 +37,11 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         {{-- Admin --}}
-                        <div class="sb-sidenav-menu-heading">Admin</div>
-
-                        {{-- Admin --}}
-                        
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="\admin\list">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Admin
+                        </a>
 
                         {{-- CV --}}
                         <div class="sb-sidenav-menu-heading">CV</div>
@@ -68,7 +69,7 @@
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
                         <a target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin"> <div class="text-muted">Copyright &copy; Start Bootstrap - SB Admin v6.0.1 </div> </a>
-                        <div>
+                        <div id="conditions">
                             Privacy Policy
                             &middot;
                             Terms &amp; Conditions
@@ -80,13 +81,14 @@
     </div>
 
     <script>
+
         {{-- App Script --}}
         <script src="{{ mix('js/app.js') }}"></script>
        
         {{-- Ajax Requests --}}
         <script src="{{ asset('js/RequestHandler.js') }}"></script>
 
-        {{-- <script src="/js/all.min.js" crossorigin="anonymous"></script> --}}
+        {{-- <script src="/js/all.min.js" crossorigin="anonymous"></script> - -}}
 
         {{-- Admin js --}}
         <script src="/js/scripts.js"></script>

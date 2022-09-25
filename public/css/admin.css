@@ -16,6 +16,14 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+#conditions {
+  color: #adb5bd;
+}
+
+.text-muted {
+
+  color: #adb5bd !important;
+}
 
 body {
   margin: 0;

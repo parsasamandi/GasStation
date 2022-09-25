@@ -11,4 +11,10 @@ mix.js('resources/js/app.js', 'public/js')
     .styles('resources/css/style.css','public/css/style.css')
     // Admin
     .styles('resources/css/admin.css','public/css/admin.css')
+    // Ajax request handler
+    .scripts('resources/js/requestHandler.js', 'public/js/RequestHandler.js')
+
+mix.sourceMaps();
+mix.version();
+mix.extract();    
 

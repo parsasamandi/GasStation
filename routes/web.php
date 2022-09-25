@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 /*
@@ -16,6 +17,29 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+
+
+Route::get('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@index']);
+
 Route::get('/', [HomeController::class, 'index']);
-# Admin Home
-Route::get('/admin/home', [AdminController::class, 'index']);
+
+
+Route::group(['middleware' => 'auth'], function () {
+    // Logout
+    Route::post('/logout', [AdminController::class, 'logout']);
+    // Admin
+    Route::get('/admin/home', [AdminController::class, 'index']);
+    
+    Route::group(['prefix' => 'admin','as' => 'admin.'], function() {
+        Route::get('list',  [AdminController::class, 'list']);
+        Route::get('table/list',  [AdminController::class, 'adminTable'])->name('list.table');
+        Route::post('store',  [AdminController::class, 'store']);
+        Route::get('edit',  [AdminController::class, 'edit']);
+        Route::get('delete/{id}', [AdminController::class, 'delete']);
+    });
+});
+
+Auth::routes();
+
+
+
