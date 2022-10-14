@@ -19,7 +19,7 @@ class AdminController extends Controller
     }
     
     // Admin page
-    public function admin() {
+    public function index() {
         return view('admin.home');
     }
 
@@ -41,7 +41,7 @@ class AdminController extends Controller
 
     // Store
     public function store(StoreUserRequest $request, UserController $userController) {
-        $userController->store($request, User::ADMIN);
+        $userController->store($request, 1);
 
         return $this->getAction($request->get('button_action'));
     }

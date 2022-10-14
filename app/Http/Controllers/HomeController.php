@@ -12,6 +12,6 @@ class HomeController extends Controller
 
         $vars['time'] = Carbon::today()->toDateString();
 
-        return view('main', $vars);
+        return view('home', $vars);
     }
 }

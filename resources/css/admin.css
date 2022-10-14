@@ -12,6 +12,10 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+a {
+  text-decoration: none !important;
+}
+
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -20,8 +24,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   color: #adb5bd;
 }
 
-.text-muted {
-
+.text-gray {
+  text-decoration: none;
   color: #adb5bd !important;
 }
 
@@ -330,6 +334,13 @@ table.table thead {
 }
 
 /* -------------------------------------------- DataTable -------------------------------------------- */
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0.5em;
+  display: inline-block;
+  width: auto;
+}
+
 div.dataTables_wrapper div.dataTables_paginate {
   margin: 0;
   white-space: nowrap;
@@ -338,7 +349,14 @@ div.dataTables_wrapper div.dataTables_paginate {
   padding-left: 1px;
 }
 
+div.dataTables_wrapper div.dataTables_filter label {
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+}
+
 div.dataTables_wrapper div.dataTables_filter {
+  margin-bottom: 0.5em;
   text-align: left !important;
 }
 

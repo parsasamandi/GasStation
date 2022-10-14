@@ -6,16 +6,16 @@ use App\Models\User;
 use App\Datatables\GeneralDataTable;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
+use Morilog\Jalali\Jalalian;
 use Carbon\Carbon;
 
-class AdminDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     public $dataTable;
 
     public function __construct() {
         $this->dataTable = new GeneralDataTable();
     }
-
     /**
      * Build DataTable class.
      *
@@ -41,7 +41,7 @@ class AdminDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->where('role', $model::ADMIN);
+        return $model->where('role', $model::USER);
     }
 
     /**
@@ -52,7 +52,7 @@ class AdminDataTable extends DataTable
     public function html()
     {
         return $this->dataTable->tableSetting($this->builder(), 
-                $this->getColumns(), 'admin');
+                $this->getColumns(), 'user');
     }
 
     /**
@@ -66,7 +66,8 @@ class AdminDataTable extends DataTable
             $this->dataTable->getIndexCol(),
             Column::make('name'),
             Column::make('email'),
-            $this->dataTable->setActionCol('| Edit')
+            Column::make('job'),
+            $this->dataTable->setActionCol('| user')
         ];
     }
 }

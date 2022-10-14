@@ -1,9 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build",
         "dev": "npm run development",
+        "build": "vite build",
         "development": "mix",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
@@ -12,6 +11,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.0",
         "@popperjs/core": "^2.10.2",
         "@vitejs/plugin-vue": "^3.0.1",
         "axios": "^0.27",
@@ -29,7 +29,9 @@
         "datatables.net": "^1.12.1",
         "datatables.net-bs4": "^1.12.1",
         "datatables.net-responsive": "^2.3.0",
-        "datatables.net-responsive-bs4": "^2.3.0"
+        "datatables.net-responsive-bs4": "^2.3.0",
+        "jquery": "^3.6.1",
+        "select2": "^4.1.0-rc.0"
     },
     "name": "gasstation",
     "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",

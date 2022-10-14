@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 @section('stylesheet')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -37,10 +39,17 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         {{-- Admin --}}
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Admin</div>
                         <a class="nav-link" href="\admin\list">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
                             Admin
+                        </a>
+
+                        {{-- Users --}}
+                        <div class="sb-sidenav-menu-heading">User</div>
+                        <a class="nav-link" href="\user\list">
+                            <div class="sb-nav-link-icon"><i class="fa fa-user"></i></div>
+                            User
                         </a>
 
                         {{-- CV --}}
@@ -68,7 +77,11 @@
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <a target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin"> <div class="text-muted">Copyright &copy; Start Bootstrap - SB Admin v6.0.1 </div> </a>
+                        <a class="text-gray" target="_blank" href="https://github.com/StartBootstrap/startbootstrap-sb-admin">
+                            <div>
+                                Copyright &copy; Start Bootstrap - SB Admin v6.0.1
+                            </div> 
+                        </a>
                         <div id="conditions">
                             Privacy Policy
                             &middot;
@@ -80,20 +93,22 @@
         </div>
     </div>
 
-    <script>
-
-        {{-- App Script --}}
+    <!-- SCRIPTS -->
+    @section('scripts')
+        <!-- Mix -->
         <script src="{{ mix('js/app.js') }}"></script>
-       
-        {{-- Ajax Requests --}}
-        <script src="{{ asset('js/RequestHandler.js') }}"></script>
-
-        {{-- <script src="/js/all.min.js" crossorigin="anonymous"></script> - -}}
-
-        {{-- Admin js --}}
-        <script src="/js/scripts.js"></script>
+        <!-- Requests -->
+        <script src="{{ asset('js/requestHandler.js') }}"></script>
+        <!-- Scripts -->
+        <script src="{{ asset('js/scripts.js') }}"></script>
 
         <script>
+            // Close modal on button click
+            $(".close").click(function(){
+                $("#formModal").modal('hide');
+                $("#confirmationModal").modal('hide');
+            });
+
             // Ajax Setup
             $.ajaxSetup({
                 headers: {
@@ -102,12 +117,14 @@
                 processing: true,
                 dataType: "json"
             });
+
             // Select2
             $('select').select2({
                 width: '100%'
             });
-    </script>
-    
+
+        </script>
+    @show
 
 </body>
 

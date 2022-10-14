@@ -1,56 +1,57 @@
 @extends('layouts.admin')
-@section('title', 'The list of admins')
+@section('title', 'The list of users')
 
 @section('content')
-
   {{-- Header --}}
-  <x-header pageName="Admin" buttonValue="Admin">
+  <x-header pageName="user" buttonValue="user">
     <x-slot name="table">
-      <x-table :table="$adminTable" />
+      <x-table :table="$userTable" />
     </x-slot>
   </x-header>
 
   {{-- Insert --}}
-  <x-insert size="modal-l" formId="adminForm">
+  <x-insert size="modal-l" formId="userForm">
     <x-slot name="content">
-      {{-- Admin list --}}
+      {{-- User form --}}
       <div class="row">
         {{-- Name --}}
-        <x-input size="12" key="name" name="Name" class="col-md-12 mb-3" />
+        <x-input key="name" name="Name" class="col-md-12 mb-2" />
         {{-- Email --}}
-        <x-input size="12" key="email" name="Email" class="col-md-12 mb-3" />
+        <x-input key="email" name="Email" class="col-md-12 mb-3" />
+        {{-- Phone number --}}
+        <x-input type="number" key="phone_number" name="Phone number" class="col-md-12 mb-3" />
         {{-- Passwords --}}
         <div class="col-md-12 mb-3">
-          <label for="password">New pssword:</label>
+          <label for="password">New password:</label>
           <input type="password" name="password" id="password" class="form-control" 
-                  placeholder="New password" autocomplete="new-password">
+                    placeholder="New password" autocomplete="new-password">
         </div>
         <div class="col-md-12">
-          <label for="password-confirm">New password confirmation:</label>
+          <label for="password-confirm">Password confirmation:</label>
           <input type="password" name="password-confirm" id="password-confirm" class="form-control" 
-                  placeholder="New password confirmation" autocomplete="new-password">
+                    placeholder="Password confirmation" autocomplete="new-password">
         </div>
       </div>
     </x-slot>
   </x-insert>
 
   {{-- Delete --}}
-  <x-delete title="Admin"/>
-
+  <x-delete title="user"/>
+  
 @endsection
 
 
 @section('scripts')
   @parent
 
-  {{-- Admin Table --}}
-  {!! $adminTable->scripts() !!}
+  {{-- User table --}}
+  {!! $userTable->scripts() !!}
 
   <script>
     $(document).ready(function () {
-      // Admin DataTable And Action Object
-      let dt = window.LaravelDataTables['adminTable'];
-      let action = new RequestHandler(dt,'#adminForm','admin');
+      // User dataTable And action object
+      let dt = window.LaravelDataTables['userTable'];
+      let action = new RequestHandler(dt,'#userForm','user');
 
       // Record modal
       $('#create_record').click(function () {
@@ -64,7 +65,7 @@
       window.showConfirmationModal = function showConfirmationModal(url) {
         action.delete(url);
       }
-      
+
       // Edit
       window.showEditModal = function showEditModal(id) {
         edit(id);
@@ -73,7 +74,7 @@
         action.reloadModal();
 
         $.ajax({
-          url: "{{ url('admin/edit') }}",
+          url: "{{ url('user/edit') }}",
           method: "get",
           data: {id: $id},
           success: function(data) {

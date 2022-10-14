@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Reservation;
 
 class User extends Authenticatable
 {
@@ -14,15 +15,21 @@ class User extends Authenticatable
 
     public $timestamps = false;
 
+    const USER = 0;
+    const ADMIN = 1;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
+        'job',
         'password',
+        'role'
     ];
 
     /**
@@ -43,4 +50,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function reservations()
+    {   
+        return $this->hasMany(Reservation::class);
+    }
 }

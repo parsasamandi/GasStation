@@ -20,7 +20,7 @@ class StoreUserRequest extends FormRequest
             'name' => 'required',
             'password' => 'required|min:6',
             'password-confirm' => 'same:password',
-            'email' => 'email:rfc,dns|required|max:255|unique:users,email,' . $request->get('id')
+            'email' => 'required|max:255|unique:users,email,' . $request->get('id')
         ];
     }
     

@@ -30,26 +30,35 @@
 							<h1>Make your reservation for {{ $time }}</h1>
 							<p>
 								This Gas Station Reservation System is desgined 
-								to organize and decrese the number traffic jams in a day
+								to organize and decrese the number of traffic jams per day
 							</p>
 						</div>
 					</div>
 					<div class="col-md-4 col-md-pull-7">
 						<div class="booking-form">
-							<form>
-								<div class="form-group">
-									<span class="form-label">Your Full Name:</span>
-									<input class="form-control" type="text" placeholder="Enter Your Full Name:">
-								</div>
+							<form action="{{ route('reservation.store') }}" method="POST">
+								@csrf
+								<!-- Success message -->
+								@if(session('status'))
+									<div class="alert alert-success">
+										{{ session('status') }}
+									</div>
+								@endif
+								<!-- Full name -->
+								<x-input key="name" name="Full Name" class="col-md-12 mb-3" />
+								<!-- Job -->
+								<x-input key="job" name="Job" class="col-md-12 mb-3" />
 								
 								<div class="form-group">
-									<span class="form-label">Time:</span>
-									{{-- selectBox --}}
-									
+									{{-- Select Box --}}
+									<span class="form-label">Choose a time:</span> 
+									<select name="time" id="time">
+										<option value="{{ $time }}">{{ $time }}</option>
+									</select>
 								</div>
-	
+								<!-- Make a reservation -->
 								<div class="form-btn">
-									<button class="submit-btn">Check availability</button>
+									<button type="submit" class="submit-btn">Make a reservation</button>
 								</div>
 							</form>
 						</div>
@@ -59,5 +68,16 @@
 		</div>
 	</div>
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+
+<!-- Mix -->
+<script src="{{ mix('js/app.js') }}"></script>
+
+<script>
+	// Select2
+	$('select').select2({
+		width: '100%'
+	});
+</script>
 
 </html>

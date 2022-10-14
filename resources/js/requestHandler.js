@@ -7,10 +7,10 @@ class RequestHandler {
     }
 
     // modal
-    openInsertionModal() {
+    openModal() {
         $('#formModal').modal('show');
         $('#button_action').val('insert');
-        $('#action').val('confirm');
+        $('#action').val('Confirm');
         $('#form_output').html('');
         $(window.formId)[0].reset();
     }
@@ -35,7 +35,8 @@ class RequestHandler {
                     success(data);
                 },
                 error: function (data) {
-                    error(data);
+                    if(data)
+                        error(data);
                 }
             })
         });
@@ -43,7 +44,7 @@ class RequestHandler {
 
     // Delete
     delete(id) {
-        $('#confirmationModal').modal('show'); // Confirm
+        $('#confirmationModal').modal('show'); // Confirmation
         $('#deleteSubmission').click(function () {
             $.ajax({
                 url: "/" + window.url + "/delete/" + id,
@@ -56,17 +57,22 @@ class RequestHandler {
         });
     }
 
-    // Default edit data
+    // Reload form modal
     reloadModal() {
         $('#form_output').html('');
         $('#formModal').modal('show');
+    }
+
+    // Cleaning dropbox
+    cleanDropbox(name) {
+        $(name).val('').trigger('change');
     }
 
     // Edit on success
     editOnSuccess(id) {
         $('#id').val(id);
         $('#button_action').val('update');
-        $('#action').val('edit');
+        $('#action').val('Edit');
     }
 }
 

@@ -13,8 +13,10 @@
         "laravel/ui": "^4.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
         "kitloong/laravel-migrations-generator": "^6.4",
+        "krlove/eloquent-model-generator": "^2.0",
         "laravel/breeze": "^1.13",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
