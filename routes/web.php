@@ -19,11 +19,9 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 
-Route::get('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@index']);
 Route::get('/', [HomeController::class, 'index']);
 
-// Route::group(['middleware' => 'auth'], function () {
-
+Route::group(['middleware' => 'auth'], function () {
     // Logout
     Route::post('/logout', [AdminController::class, 'logout']);
     // Admin
@@ -43,15 +41,25 @@ Route::get('/', [HomeController::class, 'index']);
         Route::get('edit',  [UserController::class, 'edit']);
         Route::get('delete/{id}', [UserController::class, 'delete']);
     });
-
-// });
-
-// Reservation
-Route::group(['prefix' => 'reservation', 'as' => 'reservation.'], function() {
-    Route::post('store',  [ReservationController::class, 'store'])->name('store');
+    // Reservation
+    Route::group(['prefix' => 'reservation', 'as' => 'reservation.'], function() {
+        Route::get('list', [ReservationController::class, 'list']);
+        Route::get('table/list',  [ReservationController::class, 'reservationTable'])->name('list.table');
+        Route::post('store',  [ReservationController::class, 'store']);
+        Route::get('edit',  [ReservationController::class, 'edit']);
+        Route::get('delete/{id}', [ReservationController::class, 'delete']);
+    });
 });
 
-Auth::routes();
+// Reservation
+Route::post('reservation/store',  [ReservationController::class, 'store'])->name('reservation.store');  
+
+// Authentication Routes...
+Route::get('login', [LoginController::class, 'showLoginForm']);
+Route::post('login', [LoginController::class, 'store'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+// Auth::routes();
 
 
 

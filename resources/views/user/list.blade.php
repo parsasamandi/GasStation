@@ -3,7 +3,7 @@
 
 @section('content')
   {{-- Header --}}
-  <x-header pageName="user" buttonValue="user">
+  <x-header pageName="User" buttonValue="user">
     <x-slot name="table">
       <x-table :table="$userTable" />
     </x-slot>
@@ -17,17 +17,15 @@
         {{-- Name --}}
         <x-input key="name" name="Name" class="col-md-12 mb-2" />
         {{-- Email --}}
-        <x-input key="email" name="Email" class="col-md-12 mb-3" />
-        {{-- Phone number --}}
-        <x-input type="number" key="phone_number" name="Phone number" class="col-md-12 mb-3" />
+        <x-input key="email" name="Email" class="col-md-12 mb-2" />
         {{-- Passwords --}}
-        <div class="col-md-12 mb-3">
-          <label for="password">New password:</label>
+        <div class="col-md-12 mb-2">
+          <label for="password" class="mb-2">New password:</label>
           <input type="password" name="password" id="password" class="form-control" 
                     placeholder="New password" autocomplete="new-password">
         </div>
-        <div class="col-md-12">
-          <label for="password-confirm">Password confirmation:</label>
+        <div class="col-md-12 mb-3">
+          <label for="password-confirm" class="mb-2">Password confirmation:</label>
           <input type="password" name="password-confirm" id="password-confirm" class="form-control" 
                     placeholder="Password confirmation" autocomplete="new-password">
         </div>

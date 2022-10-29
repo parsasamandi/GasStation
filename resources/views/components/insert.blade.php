@@ -3,9 +3,7 @@
   <div class="modal-dialog {{ $size }}">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         {{-- Form --}}
@@ -13,7 +11,6 @@
           <span id="form_output"></span>
 
           {{ $content ?? null }}
-          <br />
           
           {{-- Buttons --}}
           <div class="form-group text-center">

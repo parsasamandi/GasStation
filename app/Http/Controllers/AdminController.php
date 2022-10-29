@@ -41,7 +41,7 @@ class AdminController extends Controller
 
     // Store
     public function store(StoreUserRequest $request, UserController $userController) {
-        $userController->store($request, 1);
+        $userController->store($request, User::ADMIN);
 
         return $this->getAction($request->get('button_action'));
     }

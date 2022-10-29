@@ -2,20 +2,20 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
-use App\Datatables\GeneralDataTable;
+use App\Models\Reservation;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\Html\Editor\Editor;
+use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-use Morilog\Jalali\Jalalian;
-use Carbon\Carbon;
 
-class UserDataTable extends DataTable
+class ReservationDataTable extends DataTable
 {
     public $dataTable;
 
     public function __construct() {
         $this->dataTable = new GeneralDataTable();
     }
+    
     /**
      * Build DataTable class.
      *
@@ -28,8 +28,14 @@ class UserDataTable extends DataTable
             ->eloquent($query)
             ->addIndexColumn()
             ->rawColumns(['action'])
-            ->addColumn('action', function (User $user){
-                return $this->dataTable->setAction($user->id);
+            ->addColumn('name', function(Reservation $reservation) {
+                return $reservation->user->name;
+            })
+            ->addColumn('email', function(Reservation $reservation) {
+                return $reservation->user->email;
+            })
+            ->addColumn('action', function (Reservation $reservation){
+                return $this->dataTable->setAction($reservation->id);
             });
     }
 
@@ -39,9 +45,9 @@ class UserDataTable extends DataTable
      * @param \App\Models\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query(Reservation $model)
     {
-        return $model->where('role', $model::USER);
+        return $model->newQuery();
     }
 
     /**
@@ -52,7 +58,7 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->dataTable->tableSetting($this->builder(), 
-                $this->getColumns(), 'user');
+                $this->getColumns(), 'reservation');
     }
 
     /**
@@ -66,8 +72,9 @@ class UserDataTable extends DataTable
             $this->dataTable->getIndexCol(),
             Column::make('name'),
             Column::make('email'),
-            Column::make('job'),
-            $this->dataTable->setActionCol('| edit')
+            Column::make('time'),
+            Column::make('factor'),
+            $this->dataTable->setActionCol('| Edit')
         ];
     }
 }

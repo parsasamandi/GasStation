@@ -25,7 +25,7 @@
           <input type="password" name="password" id="password" class="form-control" 
                   placeholder="New password" autocomplete="new-password">
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 mb-3">
           <label for="password-confirm">New password confirmation:</label>
           <input type="password" name="password-confirm" id="password-confirm" class="form-control" 
                   placeholder="New password confirmation" autocomplete="new-password">
@@ -77,10 +77,10 @@
           method: "get",
           data: {id: $id},
           success: function(data) {
+            console.log($id);
             action.editOnSuccess($id);
             $('#name').val(data.name);
             $('#email').val(data.email);
-            $('#phone_number').val(data.phone_number);
             $('#password').val('NewPassword');
             $('#password-confirm').val('NewPassword');
           }

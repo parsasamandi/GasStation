@@ -54,8 +54,8 @@ class UserController extends Controller
 
         User::updateOrCreate(
             ['id' => $id],
-            ['name' => $request->get('name'), 'job' => $request->get('job'),
-            'password' => Hash::make($request->get('password'))]
+            ['name' => $request->get('name'), 'job' => $request->get('job'), 'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')), 'role' => $role]
         );
 
         return $this->getAction($request->get('button_action'));

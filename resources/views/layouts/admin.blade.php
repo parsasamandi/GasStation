@@ -38,6 +38,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
+                        
                         {{-- Admin --}}
                         <div class="sb-sidenav-menu-heading">Admin</div>
                         <a class="nav-link" href="\admin\list">
@@ -52,17 +53,12 @@
                             User
                         </a>
 
-                        {{-- CV --}}
-                        <div class="sb-sidenav-menu-heading">CV</div>
-
-                        {{-- Skill --}}
-                        
-
-                        {{-- Refree --}}
-                        
-
-                        {{-- Experiences --}}
-                        
+                        {{-- Reservation --}}
+                        <div class="sb-sidenav-menu-heading">Reservation</div>
+                        <a class="nav-link" href="\reservation\list">
+                            <div class="sb-nav-link-icon"><i class="fa fa-ticket"></i></div>
+                            Reservation
+                        </a>
 
                     </div>
                 </div>

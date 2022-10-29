@@ -39,16 +39,24 @@
 							<form action="{{ route('reservation.store') }}" method="POST">
 								@csrf
 								<!-- Success message -->
-								@if(session('status'))
+								@if(session('success'))
 									<div class="alert alert-success">
-										{{ session('status') }}
+										{{ session('success') }}
+									</div>
+								@endif
+								<!-- Failure message -->
+								@if(session('danger'))
+									<div class="alert alert-danger">
+										{{ session('danger') }}
 									</div>
 								@endif
 								<!-- Full name -->
 								<x-input key="name" name="Full Name" class="col-md-12 mb-3" />
 								<!-- Job -->
 								<x-input key="job" name="Job" class="col-md-12 mb-3" />
-								
+								<!-- Email -->
+								<x-input key="email" name="Email" class="col-md-12 mb-3" />
+
 								<div class="form-group">
 									{{-- Select Box --}}
 									<span class="form-label">Choose a time:</span> 
