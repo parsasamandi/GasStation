@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;  
 use Illuminate\Http\Request;
 use Auth;
@@ -47,18 +48,27 @@ class LoginController extends Controller
 
     // Store Login
     public function store(Request $request)
-    {
-        request()->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('/admin/home');
+    { 
+        $user = User::where('role', User::ADMIN)->first();
+
+        if($user) {
+            $credentials = $request->only('email', 'password');
+            if (Auth::attempt($credentials)) {
+
+                // Authentication passed...
+                return redirect()->intended('/admin/home');
+            }
         }
+    
         return back()->with('failure', 'Your email or password is incorrect. please try again');
+    }
+
+    // Logout
+    public function logout(Request $request) {
+        
+        Auth::logout();
+
+        return redirect('/');
     }
         
 }

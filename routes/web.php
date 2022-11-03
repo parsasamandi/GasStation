@@ -57,7 +57,7 @@ Route::post('reservation/store',  [ReservationController::class, 'store'])->name
 // Authentication Routes...
 Route::get('login', [LoginController::class, 'showLoginForm']);
 Route::post('login', [LoginController::class, 'store'])->name('login');
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 // Auth::routes();
 

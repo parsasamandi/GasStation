@@ -21,7 +21,7 @@
         <x-input size="12" key="email" name="Email" class="col-md-12 mb-3" />
         {{-- Passwords --}}
         <div class="col-md-12 mb-3">
-          <label for="password">New pssword:</label>
+          <label class="mb-2" for="password">New pssword:</label>
           <input type="password" name="password" id="password" class="form-control" 
                   placeholder="New password" autocomplete="new-password">
         </div>

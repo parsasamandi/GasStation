@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Providers\Action;   
 use App\DataTables\ReservationDataTable;
 use App\Http\Requests\StoreReservationRequest;
@@ -39,45 +40,48 @@ class ReservationController extends Controller
 
         DB::transaction(function() use($request) {
 
-            $user = User::where(function ($query) {
+            $user = User::where(function ($query) use ($request) {
                 $query->where('name', $request->get('name'))
-                    ->where('email', $request->get('email'))
-                    ->where('job', 'truck driver')
-                    ->orWhere('job', 'taxt driver')->first();
-            });
+                    ->where('email', $request->get('email'));
+            })->first();
 
-            if(!$user) {
-                // Store user
-                $user = User::create(
-                    ['name' => $request->get('name'), 'email' => $request->get('email'),
-                        'job' => $request->get('job')]
-                );
-                // Store user's reservation
-                $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
-
-
-            } else {
+            // Think for a fucking solution
+            if($user) {
                 foreach($user->reservations as $reservation) {
+                    if($user->job == 'driver' && $reservation->time == Carbon::today()->toDateString()) {
 
-                    if($reservation->time == $request->get('time')) {
+                        // Store user and user's reservations   
+                        $this->create($request);
 
-                        // Store user
-                        $user = User::create(
-                            ['name' => $request->get('name'), 'email' => $request->get('email'), 
-                                'job' => $request->get('job')]
-                        );
-                        // Store user's reservation
-                        $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
+                    } else if($reservation->time != Carbon::today()->toDateString()) {
+    
+                        // Store user and user's reservations   
+                        $this->create($request);
+                    } 
+                } 
+            } else {
 
-                    } else {
-                        
-                        return back()->with('danger', 'The data was not submitted successfully');
-                    }
-                }
-            }  
+                // Store user and user's reservations   
+                $this->create($request);
+
+            }
+             
         });
-        
+
+        // Do not put this for all of them
         return back()->with('success', 'The data was submitted successfully');
+    }
+
+    public function create(Request $request) {
+
+        // Store user
+        $user = User::create(
+            ['name' => $request->get('name'), 'email' => $request->get('email'), 
+                'job' => $request->get('job')]
+        );
+        // Store user's reservation
+        $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
+
     }
 
     // Edit 
