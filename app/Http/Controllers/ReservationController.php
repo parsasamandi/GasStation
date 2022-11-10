@@ -22,6 +22,13 @@ class ReservationController extends Controller
     // Datatable to blade
     public function list() {
 
+        // Yesterday's reservationsa    
+        $yesterdayReservations = Reservation::whereNot('time', Carbon::today()->toDateString())->get();
+
+        foreach($yesterdayReservations as $yesterdayReservation) {
+            $yesterdayReservation->delete();
+        }
+
         $dataTable = new ReservationDataTable();
 
         // Reservation Table
@@ -38,51 +45,45 @@ class ReservationController extends Controller
     // Store reservation
     public function store(Request $request) {
 
-        DB::transaction(function() use($request) {
+        $user = User::where(function ($query) use ($request) {
+            $query->where('name', $request->get('name'))
+                ->where('email', $request->get('email'));
+        })->first();
 
-            $user = User::where(function ($query) use ($request) {
-                $query->where('name', $request->get('name'))
-                    ->where('email', $request->get('email'));
-            })->first();
 
-            // Think for a fucking solution
+        if(Reservation::count() <= 40) {
             if($user) {
-                foreach($user->reservations as $reservation) {
-                    if($user->job == 'driver' && $reservation->time == Carbon::today()->toDateString()) {
-
-                        // Store user and user's reservations   
-                        $this->create($request);
-
-                    } else if($reservation->time != Carbon::today()->toDateString()) {
+                if($request->get('job') == 'driver') {
+                    foreach($user->reservations as $reservation) {
+                        if($reservation->time == Carbon::today()->toDateString()) {
     
-                        // Store user and user's reservations   
-                        $this->create($request);
+                            // Store user's reservation  
+                            $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
+    
+                            return back()->with('success', 'You have successfully made another registeration'); 
+                        }
                     } 
                 } 
-            } else {
-
+            } 
+            else {
                 // Store user and user's reservations   
-                $this->create($request);
-
+                $user = User::create(
+                    ['name' => $request->get('name'), 'email' => $request->get('email'), 
+                        'job' => $request->get('job')]
+                );
+                // Store user's reservation
+                $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
+    
+                return back()->with('success', 'You have successfully made a registeration');
             }
-             
-        });
+        } else   {
+            return back()->with('danger', 'The capacity for Today is full');
+        }
 
-        // Do not put this for all of them
-        return back()->with('success', 'The data was submitted successfully');
-    }
-
-    public function create(Request $request) {
-
-        // Store user
-        $user = User::create(
-            ['name' => $request->get('name'), 'email' => $request->get('email'), 
-                'job' => $request->get('job')]
-        );
-        // Store user's reservation
-        $user->reservations()->create(['time' => $request->get('time'), 'factor' => uniqid()]);
+        // return back()->with('success', 'You have successfully made a registeration');
 
     }
+
 
     // Edit 
     public function edit(Request $request) {

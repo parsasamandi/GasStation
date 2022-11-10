@@ -21,7 +21,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     // Logout
     Route::post('/logout', [AdminController::class, 'logout']);
     // Admin
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('edit',  [ReservationController::class, 'edit']);
         Route::get('delete/{id}', [ReservationController::class, 'delete']);
     });
-});
+// });
 
 // Reservation
 Route::post('reservation/store',  [ReservationController::class, 'store'])->name('reservation.store');  

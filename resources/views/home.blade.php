@@ -56,6 +56,7 @@
 								<x-input key="job" name="Job" class="col-md-12 mb-3" />
 								<!-- Email -->
 								<x-input key="email" name="Email" class="col-md-12 mb-3" />
+									
 
 								<div class="form-group">
 									{{-- Select Box --}}
