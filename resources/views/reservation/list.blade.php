@@ -8,21 +8,6 @@
       <x-table :table="$reservationTable" />
     </x-slot>
   </x-header>
-
-  {{-- Insert --}}
-  <x-insert size="modal-l" formId="reservationForm">
-    <x-slot name="content">
-      {{-- User form --}}
-      <div class="row">
-        {{-- User's name --}}
-        <x-input key="name" name="User's name" class="col-md-12 mb-2" />
-        {{-- Time --}}
-        <x-input key="time" name="Time" class="col-md-12 mb-2" />
-        {{-- Factor --}}
-        <x-input key="factor" name="Factor" class="col-md-12 mb-3" />
-      </div>
-    </x-slot>
-  </x-insert>
   
   {{-- Delete --}}
   <x-delete title="reservation"/>
