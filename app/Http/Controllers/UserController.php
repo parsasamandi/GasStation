@@ -49,13 +49,16 @@ class UserController extends Controller
 
     // Store user
     public function store(StoreUserRequest $request, $role = User::USER) {
+        
         // Id
         $id = $request->get('id');
 
         User::updateOrCreate(
             ['id' => $id],
-            ['name' => $request->get('name'), 'job' => $request->get('job'), 'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password')), 'role' => $role]
+            ['name' => $request->get('name'), 'job' => $request->get('job'), 
+            'email' => $request->get('email'),
+            'password' => Hash::make($request->get('password')), 
+            'role' => $role]
         );
 
         return $this->getAction($request->get('button_action'));

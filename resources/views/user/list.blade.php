@@ -19,15 +19,15 @@
         {{-- Email --}}
         <x-input key="email" name="Email" class="col-md-12 mb-2" />
         {{-- Passwords --}}
-        <div class="col-md-12 mb-2">
-          <label for="password" class="mb-2">New password:</label>
+        <div class="col-md-12 mb-3">
+          <label class="mb-2" for="password">New pssword:</label>
           <input type="password" name="password" id="password" class="form-control" 
-                    placeholder="New password" autocomplete="new-password">
+                  placeholder="New password" autocomplete="new-password">
         </div>
         <div class="col-md-12 mb-3">
-          <label for="password-confirm" class="mb-2">Password confirmation:</label>
+          <label class="mb-2" for="password-confirm">New password confirmation:</label>
           <input type="password" name="password-confirm" id="password-confirm" class="form-control" 
-                    placeholder="Password confirmation" autocomplete="new-password">
+                  placeholder="New password confirmation" autocomplete="new-password">
         </div>
       </div>
     </x-slot>

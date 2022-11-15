@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="col-md-7 col-md-push-5">
 						<div class="booking-cta">
-							<h1>Make your reservation for {{ $time }}</h1>
+							<h1>Make reservation for {{ $time }}</h1>
 							<p>
 								This Gas Station Reservation System is desgined 
 								to organize and decrese the number of traffic jams per day

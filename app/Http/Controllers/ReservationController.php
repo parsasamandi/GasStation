@@ -58,13 +58,15 @@ class ReservationController extends Controller
                             return back()->with('success', 'You have successfully made another registeration'); 
                         }
                     } 
-                } 
+                } else {
+                    return back()->with('danger', 'Your job title is not the same as it was');
+                }
             } 
             else {
                 // Store user and user's reservations   
                 $user = User::create(
                     ['name' => $request->get('name'), 'email' => $request->get('email'), 
-                        'job' => $request->get('job'), 'date' => $todayDate]
+                        'job' => $request->get('job'), 'created_at' => $todayDate]
                 );
                 // Store user's reservation
                 $user->reservations()->create(['time' => $todayDate, 'factor' => uniqid()]);
@@ -74,8 +76,6 @@ class ReservationController extends Controller
         } else {
             return back()->with('danger', 'Unfortunately we are at full capacity');
         }
-
-        // return back()->with('success', 'You have successfully made a registeration');
     }
 
 

@@ -26,7 +26,7 @@
                   placeholder="New password" autocomplete="new-password">
         </div>
         <div class="col-md-12 mb-3">
-          <label for="password-confirm">New password confirmation:</label>
+          <label class="mb-2" for="password-confirm">New password confirmation:</label>
           <input type="password" name="password-confirm" id="password-confirm" class="form-control" 
                   placeholder="New password confirmation" autocomplete="new-password">
         </div>
